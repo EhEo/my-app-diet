@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import './App.css';
+import MounjaroTracker from './components/MounjaroTracker';
+import MealLog from './components/MealLog';
+import WeightOCR from './components/WeightOCR';
+import Dashboard from './components/Dashboard';
+import { motion } from 'framer-motion';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <motion.header
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="header"
+      >
+        <div>
+          <p style={{ fontSize: '0.85rem', color: '#7F8C8D', fontWeight: '600' }}>Smart Care</p>
+          <h1>Mounjaro Diet</h1>
+        </div>
+        <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#007A33', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800' }}>
+          M
+        </div>
+      </motion.header>
+
+      <main>
+        <MounjaroTracker />
+        <Dashboard />
+        <MealLog />
+        <WeightOCR />
+      </main>
+
+      <footer style={{ textAlign: 'center', padding: '20px 0', color: '#BDC3C7', fontSize: '0.75rem' }}>
+        &copy; 2026 Mounjaro Smart Diet Manager. All rights reserved.
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
